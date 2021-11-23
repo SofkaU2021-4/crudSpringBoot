@@ -27,7 +27,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> list(@PathVariable("id")long id) {
 
-        return new ResponseEntity(userServices.getOneUser(id),HttpStatus.OK);
+        if (userServices.existsById(id)) {
+            return  new ResponseEntity(userServices.getOneUser(id), HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity("no existe el id a buscar", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/")

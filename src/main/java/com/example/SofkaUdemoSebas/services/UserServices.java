@@ -21,6 +21,8 @@ public class UserServices {
     public ArrayList<UserModel> getUser(){
         return  (ArrayList<UserModel>) userRepository.findAll();
     }
+
+
     public UserModel getOneUser(long id){
         return  userRepository.findById(id).orElseThrow(() -> new Mensaje("User by id " + id + " was not found"));
     }
@@ -28,6 +30,9 @@ public class UserServices {
     public boolean existsById(long id){
         return userRepository.existsById(id);
     }
+
+
+
     public boolean updateUser(UserModel userModel){
        try{
            userRepository.save(userModel);
@@ -39,9 +44,13 @@ public class UserServices {
 
     }
 
+
+
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
     }
+
+
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
     }
