@@ -36,7 +36,7 @@ public class UserController {
         userServices.saveUser(userModel);
 
 
-        return new ResponseEntity("usuario creado con exito",HttpStatus.OK);
+        return new ResponseEntity("usuario creado con exito",HttpStatus.CREATED);
     }
 
    @DeleteMapping("/{id}")
@@ -49,7 +49,12 @@ public class UserController {
    @PatchMapping("/")
     public  ResponseEntity<?>update( @RequestBody UserModel userModel) {
        if (userServices.existsById(userModel.getId())) {
-           return new ResponseEntity(userServices.updateUser(userModel),HttpStatus.OK);
+           boolean response = userServices.updateUser(userModel);
+           if(response){
+               return new ResponseEntity("Actualizacion ok", HttpStatus.OK);
+           }else{
+               return new ResponseEntity("Faltan campos", HttpStatus.NOT_ACCEPTABLE);
+           }
        } else {
            return new ResponseEntity("no existe el id a modificar", HttpStatus.NOT_FOUND);
        }

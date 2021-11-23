@@ -12,9 +12,11 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false )
     private long id;
-
+    @Column( nullable = false )
     private String nombre ;
+    @Column( nullable = false )
     private String email;
+    @Column( nullable = false )
     private Integer prioridad ;
 
 
