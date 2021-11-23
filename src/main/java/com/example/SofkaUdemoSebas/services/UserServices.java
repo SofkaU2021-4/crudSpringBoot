@@ -39,8 +39,6 @@ public class UserServices {
 
     }
 
-
-
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
     }
