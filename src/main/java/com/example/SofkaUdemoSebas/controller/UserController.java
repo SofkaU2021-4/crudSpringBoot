@@ -19,13 +19,13 @@ public class UserController {
     UserServices userServices;
 
     @GetMapping("/")
-    public ResponseEntity<?> list() {
+    public ResponseEntity<?> listUsuarios() {
 
         return new ResponseEntity(userServices.getUser(),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> list(@PathVariable("id")long id) {
+    public ResponseEntity<?> obtenerUnUsuario(@PathVariable("id")long id) {
 
         if (userServices.existsById(id)) {
             return  new ResponseEntity(userServices.getOneUser(id), HttpStatus.OK);
