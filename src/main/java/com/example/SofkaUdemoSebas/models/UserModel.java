@@ -18,7 +18,7 @@ public class UserModel {
     private Integer prioridad ;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

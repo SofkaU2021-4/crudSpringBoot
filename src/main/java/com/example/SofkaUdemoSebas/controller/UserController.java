@@ -2,14 +2,13 @@ package com.example.SofkaUdemoSebas.controller;
 
 
 import com.example.SofkaUdemoSebas.models.UserModel;
-import com.example.SofkaUdemoSebas.repository.UserRepository;
+
 import com.example.SofkaUdemoSebas.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/usuario" )
@@ -46,5 +45,15 @@ public class UserController {
         userServices.deleteUserById(id);
         return new ResponseEntity("usuario eliminado con exito",HttpStatus.OK);
    }
+
+   @PatchMapping("/")
+    public  ResponseEntity<?>update( @RequestBody UserModel userModel) {
+       if (userServices.existsById(userModel.getId())) {
+           return new ResponseEntity(userServices.updateUser(userModel),HttpStatus.OK);
+       } else {
+           return new ResponseEntity("no existe el id a modificar", HttpStatus.NOT_FOUND);
+       }
+   }
+
 
 }

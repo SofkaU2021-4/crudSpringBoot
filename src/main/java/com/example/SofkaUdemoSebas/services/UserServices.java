@@ -7,7 +7,9 @@ import com.example.SofkaUdemoSebas.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
+
 
 @Service
 public class UserServices {
@@ -20,6 +22,15 @@ public class UserServices {
     public UserModel getOneUser(long id){
         return  userRepository.findById(id).orElseThrow(() -> new Mensaje("User by id " + id + " was not found"));
     }
+
+    public boolean existsById(long id){
+        return userRepository.existsById(id);
+    }
+    public UserModel updateUser(UserModel userModel){
+        return userRepository.save(userModel);
+    }
+
+
 
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
